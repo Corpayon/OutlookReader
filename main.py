@@ -10,6 +10,8 @@ from openpyxl.styles import PatternFill, Font
 class OutlookDispatcher:
     def __init__(self):
 
+
+
         self.employee_dic = {}
         with open('user_settings.json', 'r') as myfile:
             data = myfile.read()
@@ -239,8 +241,12 @@ class OutlookDispatcher:
 
 
 def main():
-    a = OutlookDispatcher()
-    a.user_interaction()
+  if not os.listdir('.').__contains__('user_settings.json'):
+      with open('user_settings.json', 'w') as fp:
+         json.dump({"categories": ["Mandelbrot", "Dali"], "name": "", "calendar": ["YourMainCalendar", ""], "file_name": ""},fp)
+  a = OutlookDispatcher()
+  a.user_interaction()
+
 
 
 if __name__ == "__main__":
